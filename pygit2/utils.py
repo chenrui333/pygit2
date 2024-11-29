@@ -34,7 +34,7 @@ def maybe_string(ptr):
     if not ptr:
         return None
 
-    return ffi.string(ptr).decode('utf8', errors='surrogateescape')
+    return ffi.string(ptr).decode('utf8', errors='replace')
 
 
 def to_bytes(s, encoding='utf-8', errors='strict'):

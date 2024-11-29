@@ -32,15 +32,15 @@ import shutil
 
 bstring = b'\xc3master'
 
+
 def test_nonunicode_branchname(testrepo):
     folderpath = 'temp_repo_nonutf'
     if os.path.exists(folderpath):
         shutil.rmtree(folderpath)
     newrepo = pygit2.clone_repository(
-        path=folderpath, 
-        url='https://github.com/pygit2/test_branch_notutf.git'
-        )
+        path=folderpath, url='https://github.com/pygit2/test_branch_notutf.git'
+    )
     assert bstring in [
         (ref.split('/')[-1]).encode('utf8', 'surrogateescape')
         for ref in newrepo.listall_references()
-    ] # Remote branch among references: 'refs/remotes/origin/\udcc3master'
+    ]  # Remote branch among references: 'refs/remotes/origin/\udcc3master'
