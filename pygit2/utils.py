@@ -34,7 +34,10 @@ def maybe_string(ptr):
     if not ptr:
         return None
 
-    return os.fsdecode(ffi.string(ptr))
+    try:
+        return ffi.string(ptr).decode("utf8")
+    except UnicodeDecodeError:
+        return ffi.string(ptr)
 
 
 def to_bytes(s, encoding='utf-8', errors='strict'):
