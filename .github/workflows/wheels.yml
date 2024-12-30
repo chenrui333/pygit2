@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - master
+    - macos
     tags:
     - 'v*'
 
@@ -14,10 +15,10 @@ jobs:
     strategy:
       matrix:
         include:
-        - name: linux
-          os: ubuntu-24.04
+#       - name: linux
+#         os: ubuntu-24.04
         - name: macos
-          os: macos-12
+          os: macos-13
 
     steps:
       - uses: actions/checkout@v4
